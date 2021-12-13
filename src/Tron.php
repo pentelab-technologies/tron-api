@@ -750,6 +750,13 @@ class Tron implements TronInterface
 
         if(!is_null($message)) {
             $transaction['raw_data']['data'] = $this->stringUtf8toHex($message);
+
+            $response = $this->manager->request(
+				'wallet/getsignweight',
+				$transaction
+			);
+            
+			$transaction = $response['transaction']['transaction'];
         }
 
 
